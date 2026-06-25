@@ -18,19 +18,14 @@ def main():
     print(f"[INFO] Randomizing run: sleeping for {sleep_seconds} seconds...")
     time.sleep(sleep_seconds)
     
-    # 2. Determine number of commits to make today (realistic distribution)
-    # 0 commits: 15% chance (rest days)
-    # 1 commit: 45% chance
+    # 2. Determine number of commits to make today (at least 1, up to 4)
+    # 1 commit: 60% chance
     # 2 commits: 25% chance
     # 3 commits: 10% chance
     # 4 commits: 5% chance
-    choices = [0] * 15 + [1] * 45 + [2] * 25 + [3] * 10 + [4] * 5
+    choices = [1] * 60 + [2] * 25 + [3] * 10 + [4] * 5
     num_commits = random.choice(choices)
     print(f"[INFO] Selected {num_commits} commits for today.")
-    
-    if num_commits == 0:
-        print("[INFO] No contributions selected for today. Enjoy the day off!")
-        sys.exit(0)
         
     username = os.environ.get("GITHUB_ACTOR", "sujalsahu5082")
     user_email = f"{username}@users.noreply.github.com"
