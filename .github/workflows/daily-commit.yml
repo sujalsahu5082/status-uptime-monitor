@@ -16,12 +16,12 @@ jobs:
         
       - name: Make change
         run: |
-          echo "Last run: $(date)" > last_run.txt
+          echo "heartbeat: check-in at $(date)" >> heartbeat.log
           
       - name: Commit and push
         run: |
           git config --global user.name "sujalsahu5082"
           git config --global user.email "sujalsahu5082@users.noreply.github.com"
-          git add last_run.txt
-          git commit -m "chore: daily automated contribution" || echo "No changes to commit"
+          git add heartbeat.log
+          git commit -m "chore(status): update uptime logs [heartbeat]" || echo "No changes to commit"
           git push origin main
